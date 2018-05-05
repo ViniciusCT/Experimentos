@@ -5,6 +5,7 @@
  */
 package teste;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -24,7 +25,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -97,10 +100,13 @@ public class TelaPrincipalController implements Initializable {
     private ObservableList perguntasFormatadas;
     //Classe do bd para realizar os métodos;
     private PerguntaDAO dao;
+    //Obejeto que sera inserindo no banco;
+    private Pergunta pergunta;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dao = new PerguntaDAO();
+        pergunta = new Pergunta();
         //Iniciar a tebela com as perguntas;
         iniciarTabela();
         preencherTabela();
@@ -109,12 +115,20 @@ public class TelaPrincipalController implements Initializable {
     }
 
     public void preencherTabela(){
+        //Insere a imagem padrao;
+        String caminho = System.getProperty("user.dir")+"/src/imagem/default.jpg";
+        File arquivo = new File(caminho);
+        Image imagem = new Image("file:///"+arquivo.getAbsolutePath());
+        imagemEnunciado.setImage(imagem);
+        imagemResposta.setImage(imagem);
+        ///////////////////////////////
         perguntas = dao.read();
         if(perguntas != null){
             perguntasFormatadas = FXCollections.observableList(perguntas);
 
             tablePerguntas.setItems(perguntasFormatadas);
         }
+        
     }
     
     public void iniciarTabela(){
@@ -126,7 +140,6 @@ public class TelaPrincipalController implements Initializable {
     }
     
     public void inserirPergunta(){
-        Pergunta p = new Pergunta();
         
         String erro = "";
         
@@ -145,10 +158,10 @@ public class TelaPrincipalController implements Initializable {
         
         if(erro.length()==0){
             
-            p.setDisciplina(txtDisciplina.getText());
-            p.setAssunto(txtAssunto.getText());
-            p.setDescricao(txtDescricao.getText());
-            dao.insert(p);
+            pergunta.setDisciplina(txtDisciplina.getText());
+            pergunta.setAssunto(txtAssunto.getText());
+            pergunta.setDescricao(txtDescricao.getText());
+            dao.insert(pergunta);
             preencherTabela();
             
             alerta.setHeaderText("Operação concluída:");
@@ -202,10 +215,27 @@ public class TelaPrincipalController implements Initializable {
         Pergunta p = tablePerguntas.getSelectionModel().getSelectedItem();
         
         if(p != null){
+            
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TelaPrincipalController.class.getResource("AlterarPergunta.fxml"));
+            
+            Parent root = loader.load();
+            
+            Stage alterarPergunta = new Stage();
+            
+            AlterarPerguntaController apc = loader.getController();
+            apc.setPergunta(p);
+            apc.carregarCampos();
+            
+            Scene cena = new Scene(root);
+            alterarPergunta.setScene(cena);
+            
+            alterarPergunta.showAndWait();
+            /*
             Stage alterarPergunta = new Stage();
             
             FXMLLoader loader = new FXMLLoader();
-            Parent root = FXMLLoader.load(TelaPrincipalController.class.getResource("AlterarPergunta.fxml"));
+            Parent root = loader.load(getClass().getResource("AlterarPergunta.fxml").openStream());
             
             AlterarPerguntaController apc = loader.getController();
             apc.setPergunta(p);
@@ -214,14 +244,44 @@ public class TelaPrincipalController implements Initializable {
             alterarPergunta.setScene(cena);
             
             alterarPergunta.showAndWait();
-            
+            */
         }else{
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Resultado da operação");
             alerta.setHeaderText("Erro ao realizar a operação:");
             alerta.setContentText("Selecione uma pergunta para altera-lá!");
-            preencherTabela();
+            alerta.showAndWait();
         }
+    }
+    
+    @FXML
+    public void escolherImagemEnunciado(){
+        
+        FileChooser fc = new FileChooser();
+        String caminho = System.getProperty("user.dir") + "/src/imagem/";
+        fc.setInitialDirectory(new File(caminho));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens","*.jpg","*.png","*.jpeg"));
+        File arquivo = fc.showOpenDialog(new Stage());
+        
+        if(arquivo != null){
+            imagemEnunciado.setImage(new Image("file:///"+arquivo.getAbsolutePath()));
+        }
+        
+    }
+    
+    @FXML
+    public void escolherImagemResposta(){
+        
+        FileChooser fc = new FileChooser();
+        String caminho = System.getProperty("user.dir") + "/src/imagem/";
+        fc.setInitialDirectory(new File(caminho));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens","*.jpg","*.png","*.jpeg"));
+        File arquivo = fc.showOpenDialog(new Stage());
+        
+        if(arquivo != null){
+            imagemResposta.setImage(new Image("file:///"+arquivo.getAbsolutePath()));
+        }
+        
     }
     
 }

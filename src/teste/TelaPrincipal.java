@@ -21,6 +21,7 @@ public class TelaPrincipal extends Application{
         Scene cena = new Scene(telaPrincipal, WIDTH, HEIGHT);
         primaryStage.setScene(cena);
         primaryStage.show();
+        
     }
     
     public static void main(String args[]){

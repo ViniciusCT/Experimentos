@@ -7,7 +7,11 @@ package teste;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -16,16 +20,40 @@ import javafx.fxml.Initializable;
  */
 public class AlterarPerguntaController implements Initializable {
 
+    @FXML
+    private TextField txtAlterarDisciplina;
+
+    @FXML
+    private TextField txtAlterarAssunto;
+
+    @FXML
+    private TextField txtAlterarDescricao;
+
+    @FXML
+    private Button btnAlterar;
+
+    @FXML
+    private Button btnCancelar;
+    
+    @FXML
+    private ImageView imagemEnunciado;
+
+    @FXML
+    private ImageView imagemResposta;
     
     private Pergunta pergunta;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
     public void setPergunta(Pergunta pergunta){
         this.pergunta = pergunta;
     }
     
+    public void carregarCampos(){
+        txtAlterarDisciplina.setText(pergunta.getDisciplina());
+        txtAlterarAssunto.setText(pergunta.getAssunto());
+        txtAlterarDescricao.setText(pergunta.getDescricao());
+    }
 }

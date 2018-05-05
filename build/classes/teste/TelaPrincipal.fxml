@@ -56,8 +56,8 @@
       </GridPane>
       <Label layoutX="48.0" layoutY="316.0" text="Enunciado" />
       <Label layoutX="205.0" layoutY="316.0" text="Resposta" />
-      <ImageView fx:id="imagemEnunciado" fitHeight="123.0" fitWidth="124.0" layoutX="14.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imagemResposta" fitHeight="123.0" fitWidth="124.0" layoutX="167.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagemRecebidaEnunciado" fitHeight="123.0" fitWidth="124.0" layoutX="14.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagemRecebidaResposta" fitHeight="123.0" fitWidth="124.0" layoutX="167.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="txtDisciplina" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="133.0" promptText="Disciplina" />
       <TextField fx:id="txtAssunto" layoutX="161.0" layoutY="15.0" prefHeight="25.0" prefWidth="141.0" promptText="Assunto" />
       <TextField fx:id="txtDescricao" layoutX="309.0" layoutY="15.0" prefHeight="25.0" prefWidth="141.0" promptText="Descricao" />
@@ -71,10 +71,10 @@
           <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnImagemEnunciado" mnemonicParsing="false" text="Escolher Imagem" GridPane.halignment="CENTER" />
-            <Button fx:id="btnImagemResposta" mnemonicParsing="false" text="EscolherImagem" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <ImageView fitHeight="101.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fitHeight="100.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnImagemEnunciado" mnemonicParsing="false" onMouseClicked="#escolherImagemEnunciado" text="Escolher Imagem" GridPane.halignment="CENTER" />
+            <Button fx:id="btnImagemResposta" mnemonicParsing="false" onMouseClicked="#escolherImagemResposta" text="EscolherImagem" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <ImageView fx:id="imagemEnunciado" fitHeight="79.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <ImageView fx:id="imagemResposta" fitHeight="76.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
