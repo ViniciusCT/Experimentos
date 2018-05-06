@@ -15,16 +15,14 @@ import java.util.logging.Logger;
 
 public class ConnectionFactory {
     
-    public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String USER = "root";
-    public static final String URL = "jdbc:mysql://localhost:3306/dbteste";
-    public static final String PASSWORD = "1234";
+    public static final String DRIVER = "org.sqlite.JDBC";
+    public static final String URL = "jdbc:sqlite:db/db_quiz_academy.db";
     
     public static Connection getConnection(){
         
         try {
             Class.forName(DRIVER);
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            return DriverManager.getConnection(URL);
         } catch (ClassNotFoundException | SQLException ex) {
             throw new RuntimeException("Erro na conexão: ", ex);
         }
