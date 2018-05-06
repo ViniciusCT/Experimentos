@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -93,6 +92,12 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private Button btnImagemResposta;
+    
+    @FXML
+    private ImageView imagemRecebidaEnunciado;
+
+    @FXML
+    private ImageView imagemRecebidaResposta;
     
     //Lista de perguntas do banco
     private List<Pergunta> perguntas;
@@ -184,6 +189,9 @@ public class TelaPrincipalController implements Initializable {
             lblDisciplina.setText(p.getDisciplina());
             lblAssunto.setText(p.getAssunto());
             lblDescricao.setText(p.getDescricao());
+            System.out.println(p.getImagemEnunciado());
+            imagemRecebidaEnunciado.setImage(new Image("file:///"+p.getImagemEnunciado()));
+            imagemRecebidaResposta.setImage(new Image("file:///"+p.getImagemResposta()));
         }else{
             lblId.setText("");
             lblDisciplina.setText("");
@@ -265,6 +273,7 @@ public class TelaPrincipalController implements Initializable {
         
         if(arquivo != null){
             imagemEnunciado.setImage(new Image("file:///"+arquivo.getAbsolutePath()));
+            pergunta.setImagemEnunciado(arquivo.getAbsolutePath());
         }
         
     }
@@ -280,6 +289,7 @@ public class TelaPrincipalController implements Initializable {
         
         if(arquivo != null){
             imagemResposta.setImage(new Image("file:///"+arquivo.getAbsolutePath()));
+            pergunta.setImagemResposta(arquivo.getAbsolutePath());
         }
         
     }
