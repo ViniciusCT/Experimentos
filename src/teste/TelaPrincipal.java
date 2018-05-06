@@ -1,6 +1,13 @@
 
 package teste;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +33,27 @@ public class TelaPrincipal extends Application{
     
     public static void main(String args[]){
         launch(args);
+        
+        
+        //teste();
     }
     
-    
+    public static void teste(){
+        /*
+        //Mover arquivo
+        File arquivo  = new File(System.getProperty("user.dir")+"/db/db_quiz_academy.db");
+        File dir = new File("C:/Level Up");
+        
+        System.out.println(arquivo.renameTo(new File(dir,arquivo.getName())));
+        */
+        /*
+        //Listar arquivos em pasta
+        File diretorio = new File(System.getProperty("user.dir")+"/db/");
+        File[] arquivos = diretorio.listFiles();
+        
+        for(File f: arquivos){
+            System.out.println(f.getName());
+        }
+        */
+    }
 }

@@ -19,6 +19,7 @@ public class Pergunta {
     private String imagemEnunciado;
     private String imagemResposta;
 
+    
     public int get_Id() {
         return _id;
     }

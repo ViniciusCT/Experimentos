@@ -107,11 +107,17 @@ public class TelaPrincipalController implements Initializable {
     private PerguntaDAO dao;
     //Obejeto que sera inserindo no banco;
     private Pergunta pergunta;
+    //Imagem default
+    private String caminho;
+    private Image imageDefault;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dao = new PerguntaDAO();
         pergunta = new Pergunta();
+        //Imagem default
+        caminho = System.getProperty("user.dir")+"/src/imagem/default.jpg";
+        imageDefault = new Image("file:///"+caminho);
         //Iniciar a tebela com as perguntas;
         iniciarTabela();
         preencherTabela();
@@ -121,11 +127,10 @@ public class TelaPrincipalController implements Initializable {
 
     public void preencherTabela(){
         //Insere a imagem padrao;
-        String caminho = System.getProperty("user.dir")+"/src/imagem/default.jpg";
-        File arquivo = new File(caminho);
-        Image imagem = new Image("file:///"+arquivo.getAbsolutePath());
-        imagemEnunciado.setImage(imagem);
-        imagemResposta.setImage(imagem);
+        imagemEnunciado.setImage(imageDefault);
+        pergunta.setImagemEnunciado(caminho);
+        imagemResposta.setImage(imageDefault);
+        pergunta.setImagemResposta(caminho);
         ///////////////////////////////
         perguntas = dao.read();
         if(perguntas != null){
@@ -172,6 +177,8 @@ public class TelaPrincipalController implements Initializable {
             alerta.setHeaderText("Operação concluída:");
             alerta.setContentText("Pergunta adicionada com sucesso!");
             alerta.showAndWait();
+            
+            limparCamposInput();
         }else{
             alerta.setHeaderText("Erro ao executar a operação:");
             alerta.setContentText(erro);
@@ -179,7 +186,22 @@ public class TelaPrincipalController implements Initializable {
         }
         
     }
-    
+    //Limpar os campos de entrada
+    public void limparCamposInput(){
+        txtDisciplina.setText("");
+        txtAssunto.setText("");
+        txtDescricao.setText("");
+        imagemEnunciado.setImage(imageDefault);
+        imagemResposta.setImage(imageDefault);
+    }
+    //Limpar os campos de saida
+    public void limparCamposOutPut(){
+        lblDisciplina.setText("");
+        lblAssunto.setText("");
+        lblDescricao.setText("");
+        imagemRecebidaEnunciado.setImage(imageDefault);
+        imagemRecebidaResposta.setImage(imageDefault);
+    }
     
     public void itemSelecionado(){
         Pergunta p = tablePerguntas.getSelectionModel().getSelectedItem();
@@ -189,14 +211,24 @@ public class TelaPrincipalController implements Initializable {
             lblDisciplina.setText(p.getDisciplina());
             lblAssunto.setText(p.getAssunto());
             lblDescricao.setText(p.getDescricao());
-            System.out.println(p.getImagemEnunciado());
-            imagemRecebidaEnunciado.setImage(new Image("file:///"+p.getImagemEnunciado()));
-            imagemRecebidaResposta.setImage(new Image("file:///"+p.getImagemResposta()));
+            
+            String imageEnunciado = p.getImagemEnunciado();
+            String imageResposta = p.getImagemResposta();
+            
+            if(imageEnunciado != null){
+                imagemRecebidaEnunciado.setImage(new Image("file:///"+imageEnunciado));
+            }else{
+                imagemRecebidaEnunciado.setImage(imageDefault);
+            }
+            
+            if(imageResposta != null){
+                imagemRecebidaResposta.setImage(new Image("file:///"+p.getImagemResposta()));
+            }else{
+                imagemRecebidaResposta.setImage(imageDefault);
+            }
+            
         }else{
-            lblId.setText("");
-            lblDisciplina.setText("");
-            lblAssunto.setText("");
-            lblDescricao.setText("");
+            limparCamposOutPut();
         }
     }
     

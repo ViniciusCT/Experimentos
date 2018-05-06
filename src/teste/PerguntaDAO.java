@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class PerguntaDAO {
     
-    private static String tabela = "original";
+    private static String tabela = "ORIGINAL";
     
     public void insert(Pergunta p){
     
@@ -72,6 +72,8 @@ public class PerguntaDAO {
                 count++;
             }
             
+           
+            
         } catch (SQLException ex) {
             Logger.getLogger(PerguntaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,6 +95,7 @@ public class PerguntaDAO {
             stmt.setString(3, p.getDescricao());
             stmt.setString(4, p.getImagemEnunciado());
             stmt.setString(5, p.getImagemResposta());
+            
             
             stmt.executeUpdate();
         } catch (SQLException ex) {

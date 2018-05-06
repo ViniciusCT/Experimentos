@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Teste.jar" size="34790" download="eager" />
+    <jar href="Teste.jar" size="35117" download="eager" />
     <jar href="lib\sqlite-jdbc-3.7.2.jar" size="3201133" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Teste" >

@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/src/teste/TelaPrincipalController.java</file>
-            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/src/teste/PerguntaDAO.java</file>
-            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/src/teste/TelaPrincipal.java</file>
-            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/src/teste/AlterarPerguntaController.java</file>
-            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/src/teste/Pergunta.java</file>
+            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/Experimentos/src/teste/Pergunta.java</file>
+            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/Experimentos/src/teste/ConnectionFactory.java</file>
+            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/Experimentos/src/teste/PerguntaDAO.java</file>
+            <file>file:/C:/Users/User/Desktop/PUCRS/POO/Teste/Experimentos/src/teste/TelaPrincipal.java</file>
         </group>
     </open-files>
 </project-private>
